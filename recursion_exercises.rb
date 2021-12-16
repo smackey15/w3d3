@@ -1,4 +1,5 @@
 #Write a recursive method, range, that takes a start and an end and returns an array of all numbers in that range, exclusive. For example, range(1, 5) should return [1, 2, 3, 4]. If end < start, you can return an empty array.
+
 #Write both a recursive and iterative version of sum of an array.
 
 def range_iter(min, max)
@@ -73,11 +74,16 @@ p exp(2, 4) #2 * exp(2, 3) = 16
 #You should be able to handle "mixed" arrays. For instance: [1, [2], [3, [4]]].
 
 class Array
-
-    def deep_dup ##not finished
-        return self.dup if self.length == 1 || !self.is_a?(Array)
+    def deep_dup
+        #return self.dup if self.length == 1 || !self.is_a?(Array)
         arr = []
-        self.each {|ele| arr << ele.deep_dup}
+        self.each do |ele| 
+            if ele.is_a?(Array) 
+                arr << ele.deep_dup
+            else
+                arr << ele
+            end
+        end
         arr
     end
 
